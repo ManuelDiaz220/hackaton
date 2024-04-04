@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device">
+    <title>GuavaX</title>
+    <link rel="icon" type="image/jpg" href="guayaba.jpg">
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #e5ff00;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 25px;
+            position:absolute;
+            top: 25px;
+            font-size: 45px;
+            
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ffffff;
+            padding: 8px;
+            text-align: center;
+            vertical-align: top; /* Alinea el texto en la parte superior */
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .estado {
+            font-size: smaller;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Estado de las Guayabas</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>Lote No</th>
+            <th>Maduras</th>
+            <th>Inmaduras</th>
+            <th>Podrido</th>
+            <th>No identificada</th>
+            <th>Cantidad de Guayabas Total</th>
+        </tr>
+    </thead>
+    <tbody id="guayabas"></tbody>
+</table>
+
+<script>
+    // Cargar datos desde el archivo JSON
+    fetch('datos_guayabas.json')
+        .then(response => response.json())
+        .then(data => {
+            const guayabasTbody = document.getElementById('guayabas');
+
+            // Crear filas de la tabla para cada guayaba
+            data.forEach(guayaba => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${guayaba.id !== undefined ? guayaba.id : ''}</td>
+                    <td>${guayaba.maduras !== undefined ? guayaba.maduras : ''}</td>
+                    <td>${guayaba.inmaduras !== undefined ? guayaba.inmaduras : ''}</td>
+                    <td>${guayaba.podridas !== undefined ? guayaba.podridas : ''}</td>
+                    <td>${guayaba.noidentificada !== undefined ? guayaba.noidentificada : ''}</td>
+                    <td>${guayaba.cantidadtotal !== undefined ? guayaba.cantidadtotal : ''}</td>
+                    <td><span class="estado">${guayaba.tipo !== undefined ? guayaba.tipo : ''}</span></td>
+                `;
+
+                guayabasTbody.appendChild(row);
+            });
+        })
+        .catch(error => console.error('Error al cargar los datos:', error));
+</script>
+
+</body>
+</html>

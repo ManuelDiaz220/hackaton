@@ -1,0 +1,5 @@
+[
+    { "id": 1, "inmaduras": "23", "maduras": "132", "podridas": "21", "noidentificada": " 1", "cantidadtotal": " 177"},
+    { "id": 2, "inmaduras": "84", "maduras": "168", "podridas": " 80", "noidentificada": " 1 ", "cantidadtotal": " 323" },
+    { "id": 3, "inmaduras": "76", "maduras": "234", "podridas": " 98", "noidentificada": " 1 ", "cantidadtotal": " 409"}
+  ]
